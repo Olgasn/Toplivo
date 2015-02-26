@@ -1,0 +1,73 @@
+﻿@model CW_ADB_MVC.Models.View_AllOperations
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>View_AllOperations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TankID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inc_Exp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inc_Exp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TankType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

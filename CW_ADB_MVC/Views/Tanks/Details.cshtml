@@ -1,0 +1,51 @@
+﻿@model CW_ADB_MVC.Models.Tanks
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tanks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TankType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TankVolume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankVolume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TankWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TankMaterial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankMaterial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TankID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

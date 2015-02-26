@@ -1,0 +1,35 @@
+﻿@model CW_ADB_MVC.Models.Fuels
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Fuels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelDensity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelDensity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FuelID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

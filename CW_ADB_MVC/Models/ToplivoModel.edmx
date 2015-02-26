@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище toplivoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fuels">
+          <Key>
+            <PropertyRef Name="FuelID" />
+          </Key>
+          <Property Name="FuelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FuelType" Type="nvarchar" MaxLength="50" />
+          <Property Name="FuelDensity" Type="real" />
+        </EntityType>
+        <EntityType Name="Operations">
+          <Key>
+            <PropertyRef Name="OperationID" />
+          </Key>
+          <Property Name="OperationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FuelID" Type="int" />
+          <Property Name="TankID" Type="int" />
+          <Property Name="Inc_Exp" Type="real" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Tanks">
+          <Key>
+            <PropertyRef Name="TankID" />
+          </Key>
+          <Property Name="TankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TankType" Type="nvarchar" MaxLength="20" />
+          <Property Name="TankVolume" Type="real" />
+          <Property Name="TankWeight" Type="real" />
+          <Property Name="TankMaterial" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "toplivo.dbo.View_AllOperations" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_AllOperations">
+          <Key>
+            <PropertyRef Name="OperationID" />
+          </Key>
+          <Property Name="OperationID" Type="int" Nullable="false" />
+          <Property Name="FuelID" Type="int" />
+          <Property Name="TankID" Type="int" />
+          <Property Name="Inc_Exp" Type="real" />
+          <Property Name="Date" Type="date" />
+          <Property Name="FuelType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TankType" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="Хранилище toplivoModelContainer">
+          <EntitySet Name="Fuels" EntityType="Self.Fuels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operations" EntityType="Self.Operations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tanks" EntityType="Self.Tanks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_AllOperations" EntityType="Self.View_AllOperations" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_AllOperations].[OperationID] AS [OperationID], 
+    [View_AllOperations].[FuelID] AS [FuelID], 
+    [View_AllOperations].[TankID] AS [TankID], 
+    [View_AllOperations].[Inc_Exp] AS [Inc_Exp], 
+    [View_AllOperations].[Date] AS [Date], 
+    [View_AllOperations].[FuelType] AS [FuelType], 
+    [View_AllOperations].[TankType] AS [TankType]
+    FROM [dbo].[View_AllOperations] AS [View_AllOperations]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="toplivoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fuels">
+          <Key>
+            <PropertyRef Name="FuelID" />
+          </Key>
+          <Property Name="FuelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FuelDensity" Type="Single" />
+        </EntityType>
+        <EntityType Name="Operations">
+          <Key>
+            <PropertyRef Name="OperationID" />
+          </Key>
+          <Property Name="OperationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FuelID" Type="Int32" />
+          <Property Name="TankID" Type="Int32" />
+          <Property Name="Inc_Exp" Type="Single" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Tanks">
+          <Key>
+            <PropertyRef Name="TankID" />
+          </Key>
+          <Property Name="TankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TankType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TankVolume" Type="Single" />
+          <Property Name="TankWeight" Type="Single" />
+          <Property Name="TankMaterial" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_AllOperations">
+          <Key>
+            <PropertyRef Name="OperationID" />
+          </Key>
+          <Property Name="OperationID" Type="Int32" Nullable="false" />
+          <Property Name="FuelID" Type="Int32" />
+          <Property Name="TankID" Type="Int32" />
+          <Property Name="Inc_Exp" Type="Single" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TankType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="toplivoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fuels" EntityType="Self.Fuels" />
+          <EntitySet Name="Operations" EntityType="Self.Operations" />
+          <EntitySet Name="Tanks" EntityType="Self.Tanks" />
+          <EntitySet Name="View_AllOperations" EntityType="Self.View_AllOperations" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище toplivoModelContainer" CdmEntityContainer="toplivoEntities">
+          <EntitySetMapping Name="Fuels">
+            <EntityTypeMapping TypeName="toplivoModel.Fuels">
+              <MappingFragment StoreEntitySet="Fuels">
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+                <ScalarProperty Name="FuelDensity" ColumnName="FuelDensity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operations">
+            <EntityTypeMapping TypeName="toplivoModel.Operations">
+              <MappingFragment StoreEntitySet="Operations">
+                <ScalarProperty Name="OperationID" ColumnName="OperationID" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="TankID" ColumnName="TankID" />
+                <ScalarProperty Name="Inc_Exp" ColumnName="Inc_Exp" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tanks">
+            <EntityTypeMapping TypeName="toplivoModel.Tanks">
+              <MappingFragment StoreEntitySet="Tanks">
+                <ScalarProperty Name="TankID" ColumnName="TankID" />
+                <ScalarProperty Name="TankType" ColumnName="TankType" />
+                <ScalarProperty Name="TankVolume" ColumnName="TankVolume" />
+                <ScalarProperty Name="TankWeight" ColumnName="TankWeight" />
+                <ScalarProperty Name="TankMaterial" ColumnName="TankMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_AllOperations">
+            <EntityTypeMapping TypeName="toplivoModel.View_AllOperations">
+              <MappingFragment StoreEntitySet="View_AllOperations">
+                <ScalarProperty Name="OperationID" ColumnName="OperationID" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="TankID" ColumnName="TankID" />
+                <ScalarProperty Name="Inc_Exp" ColumnName="Inc_Exp" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+                <ScalarProperty Name="TankType" ColumnName="TankType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
