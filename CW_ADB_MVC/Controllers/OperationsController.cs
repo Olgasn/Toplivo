@@ -15,9 +15,61 @@ namespace CW_ADB_MVC.Controllers
         private toplivoEntities db = new toplivoEntities();
 
         // GET: Operations
-        public ActionResult Index()
+        public ActionResult Index(string FuelType, string TankType, int page = 0)
         {
-            return View(db.Operations.ToList());
+
+
+
+            var operations = from m in db.View_AllOperations
+                             select m;
+
+            var FuelLst = new List<string>();
+            var FuelQry = from f in db.Fuels
+                          orderby f.FuelType
+                          select f.FuelType;
+            FuelLst.AddRange(FuelQry.Distinct());
+            ViewBag.FuelType = new SelectList(FuelLst);
+
+            var TankLst = new List<string>();
+            var TankQry = from t in db.Tanks
+                          orderby t.TankType
+                          select t.TankType;
+            TankLst.AddRange(TankQry.Distinct());
+            ViewBag.TankType = new SelectList(TankLst);
+
+            ViewBag.page = page;
+
+            if (string.IsNullOrEmpty(FuelType))
+            {
+                if (string.IsNullOrEmpty(TankType))
+                {
+                    return View(operations.ToList());
+                }
+                else
+                {
+                    operations = operations.Where(x => x.TankType == TankType);
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(TankType))
+                {
+
+                    operations = operations.Where(x => x.FuelType == FuelType);
+                }
+                else
+                {
+                    operations = operations.Where(x => x.TankType == TankType).Where(x => x.FuelType == FuelType);
+                    ViewBag.page = 0;
+
+
+                }
+            }
+
+            return View(operations);
+
+
+
         }
 
         // GET: Operations/Details/5
