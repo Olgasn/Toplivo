@@ -14,6 +14,29 @@ namespace CW_ADB_MVC.Controllers
     {
         private toplivoEntities db = new toplivoEntities();
 
+        private void PopulateFuelsDropDownList(object selectedFuel = null)
+        {
+            var fuelsQuery = (from d in db.Fuels
+                              orderby d.FuelID
+                              select d).ToList<Fuels>();
+
+            fuelsQuery.Add(new Fuels { FuelID = 0, FuelType = "Все" });
+
+            ViewBag.FuelID = new SelectList(fuelsQuery, "FuelID", "FuelType", selectedFuel);
+
+        }
+        private void PopulateTanksDropDownList(object selectedTank = null)
+        {
+            var tanksQuery = (from d in db.Tanks
+                              orderby d.TankID
+                              select d).ToList<Tanks>();
+
+            tanksQuery.Add(new Tanks { TankID = 0, TankType = "Все" });
+
+            ViewBag.TankID = new SelectList(tanksQuery, "TankID", "TankType", selectedTank);
+
+        }
+
         // GET: Operations
         public ActionResult Index(string FuelType, string TankType, int page = 0)
         {
@@ -122,6 +145,9 @@ namespace CW_ADB_MVC.Controllers
             {
                 return HttpNotFound();
             }
+            PopulateFuelsDropDownList(operations.FuelID);
+            PopulateTanksDropDownList(operations.TankID);
+
             return View(operations);
         }
 
