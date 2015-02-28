@@ -292,10 +292,7 @@
     <Content Include="Views\Tanks\Details.cshtml" />
     <Content Include="Views\Tanks\Edit.cshtml" />
     <Content Include="Views\Tanks\Index.cshtml" />
-    <Content Include="Views\View_AllOperations\Create.cshtml" />
-    <Content Include="Views\View_AllOperations\Delete.cshtml" />
     <Content Include="Views\View_AllOperations\Details.cshtml" />
-    <Content Include="Views\View_AllOperations\Edit.cshtml" />
     <Content Include="Views\View_AllOperations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
