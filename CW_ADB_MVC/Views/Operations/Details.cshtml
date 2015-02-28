@@ -1,14 +1,14 @@
-﻿@model CW_ADB_MVC.Models.Operations
+﻿@model CW_ADB_MVC.Models.View_AllOperations
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Список проведенных операций";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Данные по операции</h2>
 
 <div>
-    <h4>Operations</h4>
+    <h4>View_AllOperations</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,6 +41,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TankType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TankType)
         </dd>
 
     </dl>

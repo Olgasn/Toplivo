@@ -79,7 +79,7 @@ namespace CW_ADB_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Operations operations = db.Operations.Find(id);
+            View_AllOperations operations = db.View_AllOperations.Find(id);
             if (operations == null)
             {
                 return HttpNotFound();
