@@ -25,31 +25,27 @@
             Емкость: @Html.DropDownList("TankType", "Все")
             @Html.Hidden("page", (int)ViewBag.page)
 
-
-
             <input type="submit" value="Обновить" />
+
         </fieldset>
+
+
     }
 
 
 
+            <div class="table">
 
+                @{var grid = new WebGrid(Model);
+                try
+                {
+                    grid.PageIndex = ((int)ViewBag.page - 1);
+                }
+                catch { }
+                ;
 
-
-<div class="table">
-
-
-
-    @{var grid = new WebGrid(Model);
-      try
-      {
-          grid.PageIndex = (int)ViewBag.page;
-      }
-      catch { }
-      ;
-      
-    }
-    @grid.GetHtml(columns: grid.Columns(
+                }
+                @grid.GetHtml(columns: grid.Columns(
       grid.Column("OperationID", "Номер операции"),
       grid.Column("FuelType", "Вид топлива"),
       grid.Column("TankType", "Емкость"),
@@ -61,10 +57,6 @@
       grid.Column(format: (item) => Html.ActionLink("Подробнее", "Details", new { id = item.OperationID })),
       grid.Column(format: (item) => Html.ActionLink("Удалить", "Delete", new { id = item.OperationID }))
      ))
+            </div>
 
-</div> 
-
-
-
-
-
+    

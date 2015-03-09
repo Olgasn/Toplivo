@@ -37,7 +37,7 @@ namespace CW_ADB_MVC.Controllers
 
         }
 
-        // GET: Operations
+        // Operations
         public ActionResult Index(string FuelType, string TankType, int page = 0)
         {
 
@@ -94,6 +94,8 @@ namespace CW_ADB_MVC.Controllers
 
 
         }
+
+
 
         // GET: Operations/Details/5
         public ActionResult Details(int? id)
