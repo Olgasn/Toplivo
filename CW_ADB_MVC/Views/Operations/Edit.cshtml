@@ -12,6 +12,11 @@
 {
     @Html.AntiForgeryToken()
     
+            
+    CW_ADB_MVC.Models.CurrentOperationModel curoperation = new CW_ADB_MVC.Models.CurrentOperationModel();
+    curoperation.CurrentOperationID = Model.OperationID;     
+    
+    @Html.Partial("_CurrentOperation", curoperation)
     <div class="form-horizontal">
         <h4>Данные операции</h4>
         <hr />

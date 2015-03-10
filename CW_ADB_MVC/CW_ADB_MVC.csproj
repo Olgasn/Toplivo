@@ -171,6 +171,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CurrentOperationModel.cs" />
     <Compile Include="Models\Fuels.cs">
       <DependentUpon>ToplivoModel.tt</DependentUpon>
     </Compile>
@@ -294,6 +295,7 @@
     <Content Include="Views\Tanks\Index.cshtml" />
     <Content Include="Views\View_AllOperations\Details.cshtml" />
     <Content Include="Views\View_AllOperations\Index.cshtml" />
+    <Content Include="Views\Shared\_CurrentOperation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
