@@ -16,9 +16,13 @@ namespace CW_ADB_MVC.Controllers
 
         
         // GET: Fuels
-        public ActionResult Index()
+        public ActionResult Index(string FuelTypeFind="")
         {
-            return View(db.Fuels.ToList());
+
+            var fuels = from m in db.Fuels
+                        where m.FuelType.StartsWith(FuelTypeFind)
+                             select m;
+            return View(fuels.ToList());
         }
 
         // GET: Fuels/Details/5

@@ -10,6 +10,23 @@
 <p>
     @Html.ActionLink("Создать новую запись", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Fuels", FormMethod.Get))
+{
+
+
+
+    <fieldset>
+        Тип топлива: @Html.TextBox("FuelTypeFind", "")
+  
+
+        <input type="submit" value="Найти" />
+
+    </fieldset>
+
+
+}
+
 <div class="table">
 
     @{var grid = new WebGrid(Model);}

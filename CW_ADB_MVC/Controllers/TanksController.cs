@@ -15,9 +15,13 @@ namespace CW_ADB_MVC.Controllers
         private toplivoEntities db = new toplivoEntities();
 
         // GET: Tanks
-        public ActionResult Index()
+        public ActionResult Index(string TankTypeFind="")
         {
-            return View(db.Tanks.ToList());
+            var tanks = from m in db.Tanks
+                        where m.TankType.StartsWith(TankTypeFind)
+                        select m;
+            
+            return View(tanks.ToList());
         }
 
         // GET: Tanks/Details/5
