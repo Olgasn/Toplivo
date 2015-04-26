@@ -11,13 +11,20 @@ namespace CW_ADB_MVC.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Tanks
     {
+
+        [Display(Name = "Номер емкости")]
         public int TankID { get; set; }
+        [Display(Name = "Тип емкости")]
         public string TankType { get; set; }
+        [Display(Name = "Объем емкости")]
         public Nullable<float> TankVolume { get; set; }
+        [Display(Name = "Вес емкости")]
         public Nullable<float> TankWeight { get; set; }
+        [Display(Name = "Материал емкости")]
         public string TankMaterial { get; set; }
     }
 }

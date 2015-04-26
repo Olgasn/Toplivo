@@ -16,6 +16,7 @@
     grid.Column("TankID", "Номер емкости"),
     grid.Column("TankType", "Тип емкости"),
     grid.Column("TankVolume", "Объем емкости"),
+    grid.Column("TankMaterial", "Материал емкости"),
     grid.Column(format: (item) => Html.ActionLink("Редактировать", "Edit", new {id=item.TankID})),
     grid.Column(format: (item) => Html.ActionLink("Подробнее", "Details", new {id=item.TankID})),
     grid.Column(format: (item) => Html.ActionLink("Удалить", "Delete", new {id=item.TankID}))

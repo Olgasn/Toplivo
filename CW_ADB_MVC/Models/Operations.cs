@@ -11,13 +11,19 @@ namespace CW_ADB_MVC.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Operations
     {
+        [Display(Name = "Номер операции")]
         public int OperationID { get; set; }
+        [Display(Name = "Номер топлива")]
         public Nullable<int> FuelID { get; set; }
+        [Display(Name = "Номер емкости")]
         public Nullable<int> TankID { get; set; }
+        [Display(Name = "Приход/Расход")]
         public Nullable<float> Inc_Exp { get; set; }
+        [Display(Name = "Дата операции")]
         public Nullable<System.DateTime> Date { get; set; }
     }
 }
