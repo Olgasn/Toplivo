@@ -41,6 +41,7 @@ namespace CW_ADB_MVC.Controllers
         public ActionResult Index(string FuelType, string TankType, int page = 0)
         {
 
+            ViewBag.Title = "Список проведенных операций";
 
 
             var operations = from m in db.View_AllOperations
@@ -66,7 +67,10 @@ namespace CW_ADB_MVC.Controllers
             {
                 if (string.IsNullOrEmpty(TankType))
                 {
-                    return View(operations.ToList());
+                    ViewBag.Title = ViewBag.Title + ". Выведены первые 1000 операций";
+                    
+
+                    operations=operations.Take(1000);
                 }
                 else
                 {

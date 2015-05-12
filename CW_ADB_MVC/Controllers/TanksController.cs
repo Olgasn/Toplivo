@@ -17,6 +17,8 @@ namespace CW_ADB_MVC.Controllers
         // GET: Tanks
         public ActionResult Index(string TankTypeFind="")
         {
+            ViewBag.Title = "Емкости";
+
             var tanks = from m in db.Tanks
                         where m.TankType.StartsWith(TankTypeFind)
                         select m;

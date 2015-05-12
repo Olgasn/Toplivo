@@ -18,6 +18,7 @@ namespace CW_ADB_MVC.Controllers
         // GET: Fuels
         public ActionResult Index(string FuelTypeFind="")
         {
+            ViewBag.Title = "Виды топлива";
 
             var fuels = from m in db.Fuels
                         where m.FuelType.StartsWith(FuelTypeFind)

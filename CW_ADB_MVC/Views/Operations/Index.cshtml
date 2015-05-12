@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<CW_ADB_MVC.Models.View_AllOperations>
 
 @{
-    ViewBag.Title = "Список проведенных операций";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 
-<h2>Список проведенных операций</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Добавить новую операцию", "Create")
@@ -46,16 +45,17 @@
 
                 }
                 @grid.GetHtml(columns: grid.Columns(
+      
+
+      grid.Column(format: (item) => Html.ActionLink("Редактировать", "Edit", new { id = item.OperationID })),
+      grid.Column(format: (item) => Html.ActionLink("Подробнее", "Details", new { id = item.OperationID })),
+      grid.Column(format: (item) => Html.ActionLink("Удалить", "Delete", new { id = item.OperationID })),
       grid.Column("OperationID", "Номер операции"),
       grid.Column("FuelType", "Вид топлива"),
       grid.Column("TankType", "Емкость"),
       grid.Column("Inc_Exp", "Приход/Расход"),
-      grid.Column("Date", "Дата"),
+      grid.Column("Date", "Дата", format: (item) => string.Format("{0:dd-MMM-yyyy}", item.Date))
 
-
-      grid.Column(format: (item) => Html.ActionLink("Редактировать", "Edit", new { id = item.OperationID })),
-      grid.Column(format: (item) => Html.ActionLink("Подробнее", "Details", new { id = item.OperationID })),
-      grid.Column(format: (item) => Html.ActionLink("Удалить", "Delete", new { id = item.OperationID }))
      ))
             </div>
 
