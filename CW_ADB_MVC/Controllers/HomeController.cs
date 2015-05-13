@@ -10,6 +10,7 @@ namespace CW_ADB_MVC.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "Топливная база";
             return View();
         }
 

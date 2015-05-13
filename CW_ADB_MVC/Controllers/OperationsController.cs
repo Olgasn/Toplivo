@@ -119,6 +119,7 @@ namespace CW_ADB_MVC.Controllers
         // GET: Operations/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "Добавить данные новой операции";
             return View();
         }
 
