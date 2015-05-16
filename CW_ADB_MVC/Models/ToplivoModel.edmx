@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище toplivoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище toplivoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Fuels">
           <Key>
             <PropertyRef Name="FuelID" />
@@ -47,6 +47,34 @@
           <Property Name="FuelType" Type="nvarchar" MaxLength="50" />
           <Property Name="TankType" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <Association Name="FK_Operations_Fuels">
+          <End Role="Fuels" Type="Self.Fuels" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operations" Type="Self.Operations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuels">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Operations">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operations_Tanks">
+          <End Role="Tanks" Type="Self.Tanks" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operations" Type="Self.Operations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tanks">
+              <PropertyRef Name="TankID" />
+            </Principal>
+            <Dependent Role="Operations">
+              <PropertyRef Name="TankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище toplivoModelContainer">
           <EntitySet Name="Fuels" EntityType="Self.Fuels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Operations" EntityType="Self.Operations" Schema="dbo" store:Type="Tables" />
@@ -62,9 +90,16 @@
     [View_AllOperations].[TankType] AS [TankType]
     FROM [dbo].[View_AllOperations] AS [View_AllOperations]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Operations_Fuels" Association="Self.FK_Operations_Fuels">
+            <End Role="Fuels" EntitySet="Fuels" />
+            <End Role="Operations" EntitySet="Operations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operations_Tanks" Association="Self.FK_Operations_Tanks">
+            <End Role="Tanks" EntitySet="Tanks" />
+            <End Role="Operations" EntitySet="Operations" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="toplivoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -75,6 +110,7 @@
           <Property Name="FuelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FuelDensity" Type="Single" />
+          <NavigationProperty Name="Operations" Relationship="toplivoModel.FK_Operations_Fuels" FromRole="Fuels" ToRole="Operations" />
         </EntityType>
         <EntityType Name="Operations">
           <Key>
@@ -85,6 +121,8 @@
           <Property Name="TankID" Type="Int32" />
           <Property Name="Inc_Exp" Type="Single" />
           <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Fuels" Relationship="toplivoModel.FK_Operations_Fuels" FromRole="Operations" ToRole="Fuels" />
+          <NavigationProperty Name="Tanks" Relationship="toplivoModel.FK_Operations_Tanks" FromRole="Operations" ToRole="Tanks" />
         </EntityType>
         <EntityType Name="Tanks">
           <Key>
@@ -95,6 +133,7 @@
           <Property Name="TankVolume" Type="Single" />
           <Property Name="TankWeight" Type="Single" />
           <Property Name="TankMaterial" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Operations" Relationship="toplivoModel.FK_Operations_Tanks" FromRole="Tanks" ToRole="Operations" />
         </EntityType>
         <EntityType Name="View_AllOperations">
           <Key>
@@ -113,7 +152,43 @@
           <EntitySet Name="Operations" EntityType="Self.Operations" />
           <EntitySet Name="Tanks" EntityType="Self.Tanks" />
           <EntitySet Name="View_AllOperations" EntityType="Self.View_AllOperations" />
+          <AssociationSet Name="FK_Operations_Fuels" Association="toplivoModel.FK_Operations_Fuels">
+            <End Role="Fuels" EntitySet="Fuels" />
+            <End Role="Operations" EntitySet="Operations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operations_Tanks" Association="toplivoModel.FK_Operations_Tanks">
+            <End Role="Tanks" EntitySet="Tanks" />
+            <End Role="Operations" EntitySet="Operations" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Operations_Fuels">
+          <End Type="toplivoModel.Fuels" Role="Fuels" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="toplivoModel.Operations" Role="Operations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuels">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Operations">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operations_Tanks">
+          <End Type="toplivoModel.Tanks" Role="Tanks" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="toplivoModel.Operations" Role="Operations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tanks">
+              <PropertyRef Name="TankID" />
+            </Principal>
+            <Dependent Role="Operations">
+              <PropertyRef Name="TankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -15,6 +15,10 @@ namespace CW_ADB_MVC.Models
     
     public partial class Tanks
     {
+        public Tanks()
+        {
+            this.Operations = new HashSet<Operations>();
+        }
 
         [Display(Name = "Номер емкости")]
         public int TankID { get; set; }
@@ -26,5 +30,6 @@ namespace CW_ADB_MVC.Models
         public Nullable<float> TankWeight { get; set; }
         [Display(Name = "Материал емкости")]
         public string TankMaterial { get; set; }
+        public virtual ICollection<Operations> Operations { get; set; }
     }
 }

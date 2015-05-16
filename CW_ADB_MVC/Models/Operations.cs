@@ -24,6 +24,9 @@ namespace CW_ADB_MVC.Models
         [Display(Name = "Приход/Расход")]
         public Nullable<float> Inc_Exp { get; set; }
         [Display(Name = "Дата операции")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> Date { get; set; }
+        public virtual Fuels Fuels { get; set; }
+        public virtual Tanks Tanks { get; set; }
     }
 }

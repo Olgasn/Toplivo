@@ -120,6 +120,9 @@ namespace CW_ADB_MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.Title = "Добавить данные новой операции";
+
+            ViewBag.FuelID = new SelectList(db.Fuels, "FuelID", "FuelType");
+            ViewBag.TankID = new SelectList(db.Tanks, "TankID", "TankType");
             return View();
         }
 
@@ -137,6 +140,8 @@ namespace CW_ADB_MVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.FuelID = new SelectList(db.Fuels, "FuelID", "FuelType", operations.FuelID);
+            ViewBag.TankID = new SelectList(db.Tanks, "TankID", "TankType", operations.TankID);
             return View(operations);
         }
 

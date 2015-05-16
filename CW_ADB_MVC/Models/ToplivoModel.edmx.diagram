@@ -7,8 +7,10 @@
       <Diagram DiagramId="7470e5eb016d470d827ac97cc2e3b261" Name="Diagram1">
         <EntityTypeShape EntityType="toplivoModel.Fuels" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="toplivoModel.Operations" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="toplivoModel.Tanks" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="toplivoModel.View_AllOperations" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="toplivoModel.Tanks" Width="1.5" PointX="4.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="toplivoModel.View_AllOperations" Width="1.5" PointX="7.625" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="toplivoModel.FK_Operations_Fuels" />
+        <AssociationConnector Association="toplivoModel.FK_Operations_Tanks" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

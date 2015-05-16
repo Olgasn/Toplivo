@@ -12,8 +12,14 @@ namespace CW_ADB_MVC.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    
     public partial class Fuels
     {
+        public Fuels()
+        {
+            this.Operations = new HashSet<Operations>();
+        }
+
         [Display(Name = "Номер топлива")]
         public int FuelID { get; set; }
 
@@ -22,5 +28,6 @@ namespace CW_ADB_MVC.Models
 
         [Display(Name = "Плотность")]
         public Nullable<float> FuelDensity { get; set; }
+        public virtual ICollection<Operations> Operations { get; set; }
     }
 }
