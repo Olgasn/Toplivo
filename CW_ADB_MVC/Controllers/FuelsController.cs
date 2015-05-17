@@ -16,6 +16,7 @@ namespace CW_ADB_MVC.Controllers
 
         
         // GET: Fuels
+        [Authorize]
         public ActionResult Index(string FuelTypeFind="")
         {
             ViewBag.Title = "Виды топлива";
@@ -27,6 +28,7 @@ namespace CW_ADB_MVC.Controllers
         }
 
         // GET: Fuels/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,6 +44,7 @@ namespace CW_ADB_MVC.Controllers
         }
 
         // GET: Fuels/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +53,7 @@ namespace CW_ADB_MVC.Controllers
         // POST: Fuels/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FuelID,FuelType,FuelDensity")] Fuels fuels)
@@ -65,6 +69,7 @@ namespace CW_ADB_MVC.Controllers
         }
 
         // GET: Fuels/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +87,7 @@ namespace CW_ADB_MVC.Controllers
         // POST: Fuels/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FuelID,FuelType,FuelDensity")] Fuels fuels)
@@ -96,6 +102,7 @@ namespace CW_ADB_MVC.Controllers
         }
 
         // GET: Fuels/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,6 +118,7 @@ namespace CW_ADB_MVC.Controllers
         }
 
         // POST: Fuels/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
