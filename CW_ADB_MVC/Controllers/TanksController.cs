@@ -44,6 +44,8 @@ namespace CW_ADB_MVC.Controllers
         // GET: Tanks/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "Емкости";
+
             return View();
         }
 
@@ -86,6 +88,8 @@ namespace CW_ADB_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TankID,TankType,TankVolume,TankWeight,TankMaterial")] Tanks tanks)
         {
+            ViewBag.Title = "Емкости";
+
             if (ModelState.IsValid)
             {
                 db.Entry(tanks).State = EntityState.Modified;
@@ -98,6 +102,8 @@ namespace CW_ADB_MVC.Controllers
         // GET: Tanks/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.Title = "Емкости";
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
