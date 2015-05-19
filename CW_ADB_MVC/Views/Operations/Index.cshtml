@@ -41,7 +41,7 @@
                 grid.Column(format: @<text>@item.FuelType</text>, columnName: "Вид топлива"),
                 grid.Column(format: @<text>@item.TankType</text>, columnName: "Емкость"),
                 grid.Column(format: @<text>@item.Inc_Exp</text>, columnName: "Приход/Расход"),
-                grid.Column(format: @<text>@item.Date</text>, columnName: "Дата")))
+                grid.Column(format: @<text>@item.Date.ToShortDateString()</text>, columnName: "Дата")))
 
 
 </div>
