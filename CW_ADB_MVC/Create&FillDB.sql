@@ -3,20 +3,32 @@
 -- 2. список емкостей (Tanks) - 100 штук
 -- 3. факты совершения операций прихода, расхода топлива (Operations) - 300000 штук
 
+--Создание базы данных
 CREATE DATABASE toplivo
 
 GO
-
 ALTER DATABASE toplivo SET RECOVERY SIMPLE
 GO
 
 USE toplivo
 --DROP TABLE Fuels, Tanks, Operations
 --DROP VIEW View_AllOperations
+
+-- Создание таблиц
 CREATE TABLE dbo.Fuels (FuelID int IDENTITY(1,1) NOT NULL PRIMARY KEY, FuelType nvarchar(50), FuelDensity real) -- виды топлива
 CREATE TABLE dbo.Tanks (TankID int IDENTITY(1,1) NOT NULL PRIMARY KEY, TankType nvarchar(20), TankVolume real, TankWeight real, TankMaterial nvarchar(20)) -- емкости
 CREATE TABLE dbo.Operations (OperationID int IDENTITY(1,1) NOT NULL PRIMARY KEY, FuelID int, TankID int, Inc_Exp real, [Date] date) -- операции
-
+-- Добавление связей между таблицами
+ALTER TABLE dbo.Operations  WITH CHECK ADD  CONSTRAINT FK_Operations_Fuels FOREIGN KEY(FuelID)
+REFERENCES dbo.Fuels (FuelID)
+GO
+ALTER TABLE dbo.Operations CHECK CONSTRAINT FK_Operations_Fuels
+GO
+ALTER TABLE dbo.Operations  WITH CHECK ADD  CONSTRAINT FK_Operations_Tanks FOREIGN KEY(TankID)
+REFERENCES dbo.Tanks (TankID)
+GO
+ALTER TABLE dbo.Operations CHECK CONSTRAINT FK_Operations_Tanks
+GO
 
 
 
