@@ -32,6 +32,7 @@
           <Property Name="TankVolume" Type="real" />
           <Property Name="TankWeight" Type="real" />
           <Property Name="TankMaterial" Type="nvarchar" MaxLength="20" />
+          <Property Name="TankPicture" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "toplivo.dbo.View_AllOperations" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -48,9 +49,7 @@
           <Property Name="TankType" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK_Operations_Fuels">
-          <End Role="Fuels" Type="Self.Fuels" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Fuels" Type="Self.Fuels" Multiplicity="0..1" />
           <End Role="Operations" Type="Self.Operations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Fuels">
@@ -62,9 +61,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Operations_Tanks">
-          <End Role="Tanks" Type="Self.Tanks" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Tanks" Type="Self.Tanks" Multiplicity="0..1" />
           <End Role="Operations" Type="Self.Operations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tanks">
@@ -134,6 +131,7 @@
           <Property Name="TankWeight" Type="Single" />
           <Property Name="TankMaterial" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Operations" Relationship="toplivoModel.FK_Operations_Tanks" FromRole="Tanks" ToRole="Operations" />
+          <Property Name="TankPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="View_AllOperations">
           <Key>
@@ -218,6 +216,7 @@
           <EntitySetMapping Name="Tanks">
             <EntityTypeMapping TypeName="toplivoModel.Tanks">
               <MappingFragment StoreEntitySet="Tanks">
+                <ScalarProperty Name="TankPicture" ColumnName="TankPicture" />
                 <ScalarProperty Name="TankID" ColumnName="TankID" />
                 <ScalarProperty Name="TankType" ColumnName="TankType" />
                 <ScalarProperty Name="TankVolume" ColumnName="TankVolume" />

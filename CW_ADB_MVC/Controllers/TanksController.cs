@@ -86,12 +86,25 @@ namespace CW_ADB_MVC.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TankID,TankType,TankVolume,TankWeight,TankMaterial")] Tanks tanks)
+        public ActionResult Edit([Bind(Include = "TankID,TankType,TankVolume,TankWeight,TankMaterial,TankPicture")] Tanks tanks, HttpPostedFileBase upload)
         {
             ViewBag.Title = "Емкости";
 
             if (ModelState.IsValid)
             {
+                if (upload != null)
+                {
+                    // формируем имя файла
+                    string fileName = tanks.TankID.ToString() +System.IO.Path.GetExtension(upload.FileName);
+                    // сохраняем файл в папку Images в проекте
+                    upload.SaveAs(Server.MapPath("~/Images/" + fileName));
+                    tanks.TankPicture = fileName;
+                    db.Entry(tanks).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Edit");
+
+                }
+
                 db.Entry(tanks).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

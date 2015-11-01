@@ -26,6 +26,7 @@ namespace CW_ADB_MVC.Models
         [Display(Name = "Дата операции")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> Date { get; set; }
+    
         public virtual Fuels Fuels { get; set; }
         public virtual Tanks Tanks { get; set; }
     }

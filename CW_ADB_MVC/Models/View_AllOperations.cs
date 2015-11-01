@@ -25,7 +25,7 @@ namespace CW_ADB_MVC.Models
         public Nullable<float> Inc_Exp { get; set; }
         [Display(Name = "Дата операции")]
         [DataType(DataType.Date)]
-        public Nullable<System.DateTime> Date { get; set; }
+         public Nullable<System.DateTime> Date { get; set; }
         [Display(Name = "Топливо")]
         public string FuelType { get; set; }
         [Display(Name = "Емкость")]

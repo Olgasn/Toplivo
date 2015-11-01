@@ -19,7 +19,6 @@ namespace CW_ADB_MVC.Models
         {
             this.Operations = new HashSet<Operations>();
         }
-
         [Display(Name = "Номер емкости")]
         public int TankID { get; set; }
         [Display(Name = "Тип емкости")]
@@ -30,6 +29,9 @@ namespace CW_ADB_MVC.Models
         public Nullable<float> TankWeight { get; set; }
         [Display(Name = "Материал емкости")]
         public string TankMaterial { get; set; }
+        [Display(Name = "Изображение емкости")]
+        public string TankPicture { get; set; }
+    
         public virtual ICollection<Operations> Operations { get; set; }
     }
 }
