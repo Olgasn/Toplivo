@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Edit", "Tanks", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <img src="~/Images/@Model.TankPicture" />
+    <img src="~/Images/@Model.TankPicture" width="200" height="200"/ >
     <input type="file" name="upload" /><br>
 
     <div class="form-horizontal">
@@ -18,6 +18,8 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.TankPicture)
         @Html.HiddenFor(model => model.TankID)
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.TankType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
