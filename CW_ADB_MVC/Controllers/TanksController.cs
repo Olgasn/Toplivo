@@ -151,7 +151,11 @@ namespace CW_ADB_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            
+
+            //Удаление заданной записи из таблицы Tanks
             Tanks tanks = db.Tanks.Find(id);
+            
             db.Tanks.Remove(tanks);
             db.SaveChanges();
             return RedirectToAction("Index");

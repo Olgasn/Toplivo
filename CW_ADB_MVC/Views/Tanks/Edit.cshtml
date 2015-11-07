@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Edit", "Tanks", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <img src="~/Images/@Model.TankPicture" width="200" height="200"/ >
+    <img src="~/Images/@Model.TankPicture" width="250" height="250">
     <input type="file" name="upload" /><br>
 
     <div class="form-horizontal">
