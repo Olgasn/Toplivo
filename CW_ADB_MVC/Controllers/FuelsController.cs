@@ -105,6 +105,7 @@ namespace CW_ADB_MVC.Controllers
         [Authorize]
         public ActionResult Delete(int? id)
         {
+            ViewBag.Title = "Топливо";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -20,12 +20,12 @@ CREATE TABLE dbo.Tanks (TankID int IDENTITY(1,1) NOT NULL PRIMARY KEY, TankType 
 CREATE TABLE dbo.Operations (OperationID int IDENTITY(1,1) NOT NULL PRIMARY KEY, FuelID int, TankID int, Inc_Exp real, [Date] date) -- операции
 -- Добавление связей между таблицами
 ALTER TABLE dbo.Operations  WITH CHECK ADD  CONSTRAINT FK_Operations_Fuels FOREIGN KEY(FuelID)
-REFERENCES dbo.Fuels (FuelID)
+REFERENCES dbo.Fuels (FuelID) ON DELETE CASCADE
 GO
 ALTER TABLE dbo.Operations CHECK CONSTRAINT FK_Operations_Fuels
 GO
 ALTER TABLE dbo.Operations  WITH CHECK ADD  CONSTRAINT FK_Operations_Tanks FOREIGN KEY(TankID)
-REFERENCES dbo.Tanks (TankID)
+REFERENCES dbo.Tanks (TankID) ON DELETE CASCADE
 GO
 ALTER TABLE dbo.Operations CHECK CONSTRAINT FK_Operations_Tanks
 GO
