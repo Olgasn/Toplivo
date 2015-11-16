@@ -22,7 +22,7 @@ namespace CW_ADB_MVC.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Fuels> Fuels { get; set; }
