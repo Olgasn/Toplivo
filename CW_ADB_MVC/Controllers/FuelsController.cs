@@ -35,12 +35,12 @@ namespace CW_ADB_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fuels fuels = db.Fuels.Find(id);
-            if (fuels == null)
+            var operations = db.Operations.Where(o => o.FuelID == id).OrderByDescending(o=>o.Date).Include(o => o.Fuels).Include(o => o.Tanks).Take(10);
+            if (operations == null)
             {
                 return HttpNotFound();
             }
-            return View(fuels);
+            return View(operations.ToList());
         }
 
         // GET: Fuels/Create

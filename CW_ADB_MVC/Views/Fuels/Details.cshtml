@@ -1,34 +1,66 @@
-﻿@model CW_ADB_MVC.Models.Fuels
+﻿@model IEnumerable<CW_ADB_MVC.Models.Operations>
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Данные по виду толива</h2>
+<h2>Вид топлива</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FuelType)
+            @Html.DisplayNameFor(model => model.First().Fuels.FuelType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FuelType)
+            @Html.DisplayFor(model => model.First().Fuels.FuelType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FuelDensity)
+            @Html.DisplayNameFor(model => model.First().Fuels.FuelDensity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FuelDensity)
+            @Html.DisplayFor(model => model.First().Fuels.FuelDensity)
         </dd>
 
     </dl>
 </div>
+<h3>Последние 10 операций с заданным видом топлива</h3>
+@Html.ActionLink("Все операции c заданным видом топлива", "Index", "Operations", new { FuelType = Model.First().Fuels.FuelType, TankType="", page=0 },null)
+<table class="table" align="left">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tanks.TankType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inc_Exp)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tanks.TankType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inc_Exp)
+            </td>
+        </tr>
+    }
+    
+</table>
+
 <p>
-    @Html.ActionLink("Редактирвать", "Edit", new { id = Model.FuelID }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.First().FuelID })
     @Html.ActionLink("Вернуться к общему списку", "Index")
 </p>
