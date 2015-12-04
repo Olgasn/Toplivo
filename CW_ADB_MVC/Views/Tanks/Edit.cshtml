@@ -63,7 +63,9 @@
 <div>
     @Html.ActionLink("Вернуться к общему списку", "Index")
 </div>
-
+<div>
+    @Html.ActionLink("Все операции c заданной емкостью", "Index", "Operations", new { TankType = Model.TankType, FuelType = "", page = 0 }, null)
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">

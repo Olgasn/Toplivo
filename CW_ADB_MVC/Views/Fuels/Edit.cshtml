@@ -43,6 +43,9 @@
 <div>
     @Html.ActionLink("Вернуться к общему списку", "Index")
 </div>
+<div>
+    @Html.ActionLink("Все операции c заданным видом топлива", "Index", "Operations", new { FuelType = Model.FuelType, TankType = "", page = 0 }, null)
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
