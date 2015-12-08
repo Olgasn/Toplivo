@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CW_ADB_MVC", "CW_ADB_MVC\CW_ADB_MVC.csproj", "{08559932-600A-4977-AF7E-0DF8A8CCA8AF}"
 EndProject

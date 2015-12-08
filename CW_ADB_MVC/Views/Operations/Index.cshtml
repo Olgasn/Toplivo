@@ -24,6 +24,7 @@
 }
 
 <div class="table">
+
     @{var grid = new WebGrid(Model);
     try
     {
@@ -33,15 +34,18 @@
     ;
 
     }
-    @grid.GetHtml(columns: grid.Columns(
-                grid.Column(format: (item) => Html.ActionLink("Редактировать", "Edit", new { id = item.OperationID })),
-                grid.Column(format: (item) => Html.ActionLink("Подробнее", "Details", new { id = item.OperationID })),
-                grid.Column(format: @<text>@item.OperationID</text>, columnName: "Номер операции"),
-                grid.Column(format: @<text>@item.FuelType</text>, columnName: "Вид топлива"),
-                grid.Column(format: @<text>@item.TankType</text>, columnName: "Емкость"),
-                grid.Column(format: @<text>@item.Inc_Exp</text>, columnName: "Приход/Расход"),
-                grid.Column(format: @<text>@item.Date.ToShortDateString()</text>, columnName: "Дата"),
-                grid.Column(format: (item) => Html.ActionLink("Удалить", "Delete", new { id = item.OperationID }))))
+    @grid.GetHtml(
+                tableStyle: "table table-bordered table-hover",
+    columns: grid.Columns(
+    grid.Column(header: "Действие", format: @<text>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.OperationID })
+        @Html.ActionLink("Подробнее", "Details", new { id = item.OperationID }) </text>),
+        grid.Column("OperationID", "Номер операции"),
+        grid.Column("FuelType", "Вид топлива"),
+        grid.Column("TankType", "Емкость"),
+        grid.Column("Inc_Exp", "Приход/Расход"),
+        grid.Column("Date", header: "Дата", format: @<text>@String.Format("{0:dd'/'MM'/'yyyy}", item.Date)</text>),
+        grid.Column(header: "Действие", format: (item) => Html.ActionLink("Удалить", "Delete", new { id = item.OperationID }))))
 
 
 
