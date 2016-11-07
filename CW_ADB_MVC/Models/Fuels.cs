@@ -15,10 +15,6 @@ namespace CW_ADB_MVC.Models
     
     public partial class Fuels
     {
-        public Fuels()
-        {
-            this.Operations = new HashSet<Operations>();
-        }
 
         [Display(Name = "Номер топлива")]
         public int FuelID { get; set; }

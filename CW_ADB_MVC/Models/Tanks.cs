@@ -15,10 +15,6 @@ namespace CW_ADB_MVC.Models
     
     public partial class Tanks
     {
-        public Tanks()
-        {
-            this.Operations = new HashSet<Operations>();
-        }
         [Display(Name = "Номер емкости")]
         public int TankID { get; set; }
         [Display(Name = "Тип емкости")]
